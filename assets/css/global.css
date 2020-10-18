@@ -1,0 +1,18 @@
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+.light {
+  background: black;
+  color: white;
+}
+
+.dark {
+  color: black;
+  background: white;
+}
+

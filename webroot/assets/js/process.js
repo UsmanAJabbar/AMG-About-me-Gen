@@ -13,14 +13,4 @@ $(document).ready(() => {
     $('#light_dark_toggle').toggleClass('sun moon');
   });
 
-  // Adds the specific data to their respective sections
-  $.getJSON('data.json', function( data ) {
-    $('title').text(data['name']);
-    $('#cover_image').css('background', 'url($data[cover_image])')
-    $('#profile_picture').css('background', 'url($data[profile_picture])');
-    $('#name').text(data['name']);
-    $('#status').text(data['status']);
-    $('#description').text(data['description'])
-  };
-
 });

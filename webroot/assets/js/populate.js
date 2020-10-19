@@ -7,8 +7,8 @@ $(document).ready(function() {
   // Adds the specific data to their respective sections
   $.getJSON('assets/data.json', function( data ) {
     $('title').text(data.name);
-    $('#cover_image').css('background', 'url(assets/img/cvr_img.jpg)');
-    $('#profile_picture').css('background', 'url(assets/img/pro_pic.jpg)');
+    $('#cover_image').css('background', 'url(assets/img/cvr_img.jpg');
+    $('#profile_picture').css('background', 'url(assets/img/pro_pic.jpg');
     $('#name').text(data.name);
     $('#status').text(data.stat);
     $('#description').text(data.desc);

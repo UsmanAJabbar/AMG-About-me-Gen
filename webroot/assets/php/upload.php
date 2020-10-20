@@ -1,6 +1,7 @@
 <?php
 
 $target_dir = "assets/img/";
+$webroot = $_SERVER['DOCUMENT_ROOT'];
 $cover_img = $target_dir . basename($_FILES["cover_img"]["name"]);
 $profile_img = $target_dir . basename($_FILES["profile_img"]["name"]);
 $uploadOk = 1;
@@ -34,7 +35,7 @@ if($imageFileType1 != "jpg" && $imageFileType1 != "png" && $imageFileType1 != "j
 // if everything is ok, try to upload file
 if ($uploadOk == 1) {
 // set path to file
-  if (move_uploaded_file($_FILES["cover_img"]["tmp_name"], "../img/cvr_img." . $imageFileType1) && move_uploaded_file($_FILES["profile_img"]["tmp_name"], "../img/pro_pic." . $imageFileType2)) {
+  if (move_uploaded_file($_FILES["cover_img"]["tmp_name"], $webroot . "/" . $cover_img) && move_uploaded_file($_FILES["profile_img"]["tmp_name"], $webroot . "/" . $profile_img)) {
 
     // store json, future ajax api call
     unset($_POST['submit']);
@@ -45,7 +46,7 @@ if ($uploadOk == 1) {
 
   //
   // needs to redirect back to index
-  //
+     header("Location: /");
 
   } else {
     echo "Sorry, there was an error uploading your files.";

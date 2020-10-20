@@ -7,7 +7,8 @@ from .models import db, User
 def get_profile():
     """ get latest profile """
 
-    profile = User.query.first()
+    count = User.query.count()
+    profile = User.query.get(count)
     return User.as_dict(profile) 
 
 @app.route('/', methods=['POST'])

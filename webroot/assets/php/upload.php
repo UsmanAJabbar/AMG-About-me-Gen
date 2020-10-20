@@ -36,21 +36,19 @@ if ($uploadOk == 1) {
 // set path to file
   if (move_uploaded_file($_FILES["cover_img"]["tmp_name"], "../img/cvr_img." . $imageFileType1) && move_uploaded_file($_FILES["profile_img"]["tmp_name"], "../img/pro_pic." . $imageFileType2)) {
 
-    // add to json
-    // $_FILES["cover_img"]["name"]))
-   // $_FILES["profile_img"]["name"]))
+    // store json, future ajax api call
+    unset($_POST['submit']);
+    $_POST['cvrimg'] = $cover_img;
+    $_POST['propic'] = $profile_img;
+    $jfile = dirname(__FILE__).'/../data.json';
+    file_put_contents($jfile, json_encode($_POST));
 
-  // store json, future ajax api call
-  unset($_POST['submit']);
-  $jfile = dirname(__FILE__).'/../data.json';
-  file_put_contents($jfile, json_encode($_POST));
-
-//
-// needs to redirect back to index
-//
+  //
+  // needs to redirect back to index
+  //
 
   } else {
-    echo "Sorry, there was an error uploading your file.";
+    echo "Sorry, there was an error uploading your files.";
   }
 }
 

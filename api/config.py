@@ -12,3 +12,5 @@ class Config:
     SQLALCHEMY_DATABASE_URI = 'sqlite:///amg.db' 
     SQLALCHEMY_ECHO = False
     SQLALCHEMY_TRACK_MODIFICATIONS=False
+
+    CORS_HEADERS = 'Content-Type'

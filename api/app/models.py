@@ -11,26 +11,40 @@ class User(db.Model):
         primary_key=True
     )
 
-    name = db.Column( 
-        db.String(80),
+    name = db.Column(
+        db.String(64),
         index=True,
         unique=False,
         nullable=False
-    )    
+    )
 
-    status = db.Column( 
-        db.String(64),
+    status = db.Column(
+        db.String(80),
         index=False,
         unique=False,
         nullable=False
-    )    
+    )
 
-    bio = db.Column( 
+    bio = db.Column(
         db.Text,
         index=False,
         unique=False,
         nullable=False
-    )    
+    )
+
+    cvrimg = db.Column(
+        db.String(48),
+        index=False,
+        unique=False,
+        nullable=False
+    )
+
+    propic = db.Column(
+        db.String(48),
+        index=False,
+        unique=False,
+        nullable=False
+    )
 
     def __repr__(self):
         return '<User {}>'.format(self.name)

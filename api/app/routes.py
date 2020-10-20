@@ -3,7 +3,6 @@ from flask import current_app as app
 from .models import db, User
 
 
-
 @app.route('/', methods=['GET'])
 def get_profile():
     """ get latest profile """
@@ -15,16 +14,16 @@ def get_profile():
 def add_profile():
     """ add profile """
 
-    print("p0")
     jreq = request.get_json()
     name = jreq['name']
     status = jreq['status']
     bio = jreq['bio']
+    cvrimg = jreq['cvrimg']
+    propic = jreq['propic']
     response = None
-    print(bio)
 
-    if name and status and bio:
-        amguser = User(name=name, status=status, bio=bio)
+    if name and status and bio and cvrimg and propic:
+        amguser = User(name=name, status=status, bio=bio, cvrimg=cvrimg, propic=propic)
         db.session.add(amguser)
         db.session.commit()
         response = make_response(f"{amguser} successfully created!")

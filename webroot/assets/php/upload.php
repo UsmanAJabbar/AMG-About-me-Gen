@@ -1,11 +1,10 @@
 <?php
 
+  $target_dir = 'assets/img/';
   $webroot = $_SERVER['DOCUMENT_ROOT'];
 
   $cover_img = $target_dir . basename($_FILES["cover_img"]["name"]);
   $profile_img = $target_dir . basename($_FILES["profile_img"]["name"]);
-  $_POST['cvrimg'] = $cover_img;
-  $_POST['propic'] = $profile_img;
 
   $imageFileType1 = strtolower(pathinfo($cover_img,PATHINFO_EXTENSION));
   $imageFileType2 = strtolower(pathinfo($profile_img,PATHINFO_EXTENSION));
@@ -43,7 +42,8 @@
     if (move_uploaded_file($_FILES["cover_img"]["tmp_name"], $webroot . "/" . $cover_img) && move_uploaded_file($_FILES["profile_img"]["tmp_name"], $webroot . "/" . $profile_img)) {
 
       // remove submit from json and add image paths
-      unset($_POST['submit']);
+      // no longer needed
+      // unset($_POST['submit']);
 
       // old json file method
       // $jfile = dirname(__FILE__).'/../data.json';
@@ -55,17 +55,34 @@
       //API Url
       $url = 'http://localhost:5000';
 
-      $options = array(
-        'http' => array(
-        'method'  => 'POST',
-        'content' => json_encode( $_POST ),
-        'header'=>  "Content-Type: application/json")
+      // Create a new cURL resource
+      $ch = curl_init($url);
+
+      $data = array(
+        'name' => $_POST['name'],
+        'status' => $_POST['stat'],
+        'bio' => $_POST['desc'],
+        'cvrimg' => $cover_img,
+        'propic' => $profile_img
       );
 
-      $context  = stream_context_create( $options );
-      $result = file_get_contents( $url, false, $context );
-      $response = json_decode( $result );
+      $payload = json_encode($data);
 
+      // Attach encoded JSON string to the POST fields
+      curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+
+      // Set the content type to application/json
+      curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+
+      // Return response instead of outputting
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+      // Execute the POST request
+      $result = curl_exec($ch);
+
+      // Close cURL resource
+      curl_close($ch);
+      //return $result;
       // redirect back to index
       header("Location: /");
 

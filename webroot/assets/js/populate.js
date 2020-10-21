@@ -1,8 +1,6 @@
-// This JS file handles the necessary processes
-// such as handling the light/dark mode, and filling
-// in the dynamic data retrived by the database
+// get json from local api and populate appropriate divs 
+// or else redirect to admin page to insert record
 
-// For faster load times, loads JS only when the HTML/CSS have been rendered
 $(document).ready(function() {
   // Adds the specific data to their respective sections
   $.getJSON('http://localhost:5000', function( data ) {

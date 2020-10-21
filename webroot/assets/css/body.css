@@ -37,4 +37,8 @@
   font-weight: 700;
   letter-spacing: -3px;
 }
-
+#contact_details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

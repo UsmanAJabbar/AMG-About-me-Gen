@@ -4,37 +4,57 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	<link rel="shortcut icon" href="assets/favicon.png" />
+
+	<!-- Name -->
     <title></title>
+
+	<!-- Bootstrap/JQuery -->
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+
+	<!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700,700i,800,800i">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,600,600i,700,700i">
+
+	<!-- Local CSS/JS -->
     <link rel="stylesheet" href="assets/css/body.css">
     <link rel="stylesheet" href="assets/css/footer.css">
     <link rel="stylesheet" href="assets/css/global.css">
+    <script src="assets/js/process.js"></script>
+    <script src="assets/js/populate.js"></script>
+
 </head>
 
 <body class="d-flex d-sm-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center align-items-sm-center justify-content-xl-center align-items-xl-center light">
     <div id="main">
+
+		<!-- Content Area -->
         <div class="container">
+
+        	<!-- Image Section (cover + profile pictures) -->
             <div id="cover_profile_picture">
                 <div class="d-xl-flex justify-content-xl-center align-items-xl-end" id="cover_image">
                     <div id="profile_picture"></div>
                 </div>
             </div>
+
+            <!-- Text Section -->
             <div>
-                <h1 class="text-uppercase text-center" id="name"></h1>
-                <h2 class="text-uppercase text-center" id="status"></h2>
+                <h1 id="name" class="text-uppercase text-center"></h1>
+                <h2 id="status" class="text-uppercase text-center"></h2>
                 <p id="description"></p>
+                <div id="contact_details"></div>
             </div>
-        </div>
+
+        </div> <!-- / Content Area -->
+
     </div>
+
     <footer class="d-xl-flex justify-content-xl-end align-items-xl-center">
         <div id="light_dark_toggle" class="moon"></div>
     </footer>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/process.js"></script>
-    <script src="assets/js/populate.js"></script>
 </body>
 
 </html>

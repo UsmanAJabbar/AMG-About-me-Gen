@@ -11,6 +11,10 @@ We understood that a lot of users may find using Wix and Wordpress overwhelming 
 - API stream for future expansions...
 - Vcard exports
 
+### Pre-requisites
+- A fresh virtual/dedicated server (recommended)
+- Ubuntu 16.0 LTS+
+
 ### Technologies involved...
 This project serves as the last project in the Holberton School Foundations curriculum, hence, we were supposed to use a lot of technologies we had used in the past along with a couple of extra technologies from past experiences.
 The technologies used to build this project include:
@@ -21,5 +25,4 @@ The technologies used to build this project include:
 
 # Authors
 Usman Abdul Jabbar Shaikh - (usmangta[at]gmail.com / UsmanJabbar.com)
-Anthony Sims - (TBD)
-
+Anthony Sims - (zocle[at]zocle.net)

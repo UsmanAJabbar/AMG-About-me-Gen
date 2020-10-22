@@ -12,6 +12,7 @@ $(document).ready(function() {
     $('#status').text(data.status);
     $('#description').text(data.bio);
 	const icons = ['phone', 'fb', 'twitter', 'insta', 'email', 'linkedin', 'github', 'medium', 'bechance'];
+
   }).fail( function() {
     $(location).attr('href', 'admin.html');
   });

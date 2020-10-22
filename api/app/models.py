@@ -1,12 +1,14 @@
 """ data models """
+from sqlalchemy import ForeignKey, Column, Integer, String
+from sqlalchemy.orm import relationship
 from . import db
 
-class User(db.Model):
+class Profile(db.Model):
     """ User Data model """
 
-    __tablename__ = 'MyDetails'
+    __tablename__ = 'profiles'
 
-    userid = db.Column(
+    id = db.Column(
         db.Integer,
         primary_key=True
     )
@@ -32,6 +34,20 @@ class User(db.Model):
         nullable=False
     )
 
+    phone = db.Column(
+        db.String(12),
+        index=False,
+        unique=False,
+        nullable=True
+    )
+
+    email = db.Column(
+        db.String(48),
+        index=False,
+        unique=False,
+        nullable=True
+    )
+
     cvrimg = db.Column(
         db.String(48),
         index=False,
@@ -44,6 +60,41 @@ class User(db.Model):
         index=False,
         unique=False,
         nullable=False
+    )
+
+    twitter = db.Column(
+        db.String(48),
+        index=False,
+        unique=False,
+        nullable=True
+    )
+
+    github = db.Column(
+        db.String(48),
+        index=False,
+        unique=False,
+        nullable=True
+    )
+
+    medium = db.Column(
+        db.String(48),
+        index=False,
+        unique=False,
+        nullable=True
+    )
+
+    instagram = db.Column(
+        db.String(48),
+        index=False,
+        unique=False,
+        nullable=True
+    )
+
+    facebook = db.Column(
+        db.String(48),
+        index=False,
+        unique=False,
+        nullable=True
     )
 
     def __repr__(self):

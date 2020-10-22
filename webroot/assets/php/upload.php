@@ -3,18 +3,18 @@
   $target_dir = 'assets/img/';
   $webroot = $_SERVER['DOCUMENT_ROOT'];
 
-  $cover_img = $target_dir . basename($_FILES["cover_img"]["name"]);
-  $profile_img = $target_dir . basename($_FILES["profile_img"]["name"]);
+  $coverimg = $target_dir . basename($_FILES["coverimg"]["name"]);
+  $profilepic = $target_dir . basename($_FILES["profilepic"]["name"]);
 
-  $imageFileType1 = strtolower(pathinfo($cover_img,PATHINFO_EXTENSION));
-  $imageFileType2 = strtolower(pathinfo($profile_img,PATHINFO_EXTENSION));
+  $imageFileType1 = strtolower(pathinfo($coverimg,PATHINFO_EXTENSION));
+  $imageFileType2 = strtolower(pathinfo($profilepic,PATHINFO_EXTENSION));
 
   $uploadOk = 1;
 
   // getimagesize will confirm the file is an actual image
   if(isset($_POST["submit"])) {
-    $check1 = getimagesize($_FILES["cover_img"]["tmp_name"]);
-    $check2 = getimagesize($_FILES["profile_img"]["tmp_name"]);
+    $check1 = getimagesize($_FILES["coverimg"]["tmp_name"]);
+    $check2 = getimagesize($_FILES["profilepic"]["tmp_name"]);
     if($check1 !== false && $check2 !== false) {
       $uploadOk = 1;
     } else {
@@ -24,7 +24,7 @@
   }
 
   // Check file size
-  if ($_FILES["cover_img"]["size"] > 500000 || $_FILES["profile_img"]["size"] > 500000) {
+  if ($_FILES["coverimg"]["size"] > 500000 || $_FILES["profilepic"]["size"] > 500000) {
     echo "Sorry, your file is too large.";
     $uploadOk = 0;
   }
@@ -39,7 +39,7 @@
   if ($uploadOk == 1) {
 
     // set path to file
-    if (move_uploaded_file($_FILES["cover_img"]["tmp_name"], $webroot . "/" . $cover_img) && move_uploaded_file($_FILES["profile_img"]["tmp_name"], $webroot . "/" . $profile_img)) {
+    if (move_uploaded_file($_FILES["coverimg"]["tmp_name"], $webroot . "/" . $coverimg) && move_uploaded_file($_FILES["profilepic"]["tmp_name"], $webroot . "/" . $profilepic)) {
 
       // remove submit from json and add image paths
       // no longer needed
@@ -59,11 +59,18 @@
       $ch = curl_init($url);
 
       $data = array(
-        'name' => $_POST['name'],
-        'status' => $_POST['stat'],
-        'bio' => $_POST['desc'],
-        'cvrimg' => $cover_img,
-        'propic' => $profile_img
+        'name' => $_POST['name-1'],
+        'status' => $_POST['status'],
+        'description' => $_POST['description'],
+        'phone' => $_POST['phone'],
+        'email' => $_POST['email'],
+        'cvrimg' => $coverimg,
+        'propic' => $profilepic,
+        'medium' => $_POST['medium'],
+        'github' => $_POST['github'],
+        'twitter' => $_POST['twitter'],
+        'facebook' => $_POST['facebook'],
+        'instagram' => $_POST['instagram']
       );
 
       $payload = json_encode($data);

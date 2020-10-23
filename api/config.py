@@ -10,7 +10,7 @@ class Config:
     '''FLASK_ENV = environ.get('FLASK_ENV')'''
 
     SQLALCHEMY_DATABASE_URI = 'sqlite:///amg.db' 
-    SQLALCHEMY_ECHO = False
+    SQLALCHEMY_ECHO = True
     SQLALCHEMY_TRACK_MODIFICATIONS=False
 
     CORS_HEADERS = 'Content-Type'

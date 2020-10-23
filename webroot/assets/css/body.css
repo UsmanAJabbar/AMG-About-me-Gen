@@ -31,7 +31,6 @@
   line-height: 45px;
   margin-top: 5px;
 }
-
 #status {
   font-family: Montserrat;
   font-weight: 700;
@@ -41,4 +40,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  max-height: 16px;
 }

@@ -23,6 +23,8 @@ The technologies used to build this project include:
 - PHP to process inputs/modifications suggested by the admin page.
 - Bootstrap/HTML/CSS/JS to generate the overall final page as well as add extra functionality.
 
+
+- For installation instructions, see install.txt
 # Authors
 Usman Abdul Jabbar Shaikh - (usmangta[at]gmail.com / UsmanJabbar.com)
 Anthony Sims - (zocle[at]zocle.net)

@@ -11,9 +11,11 @@ git clone https://github.com/UsmanGTA/AMG-About-me-Gen.git
 
 #
 # Move html to html_dist and link webroot to html
+# chown both folders to nginx user (assuming www-data)
 
 mv html html_dist
 ln -s AMG-About-me-Gen/webroot html
+chown -R www-data AMG-About-me-Gen/webroot AMG-About-me-Gen/api
 
 #
 # assuming sites-available/default is a symlink, 
@@ -44,8 +46,8 @@ flask run
 #setup authentication
 
 # add user
-sh -c "echo -n 'usman:' >> /etc/nginx/.htpasswd"
+sudo sh -c "echo -n 'usman:' >> /etc/nginx/.htpasswd"
 # add password (openssl will prompt twice):
-sh -c "openssl passwd -apr1 >> /etc/nginx/.htpasswd"
+sudo sh -c "openssl passwd -apr1 >> /etc/nginx/.htpasswd"
 
 # load your page, and enjoy!

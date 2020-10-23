@@ -90,6 +90,13 @@ class Profile(db.Model):
         nullable=True
     )
 
+    linkedin = db.Column(
+        db.String(48),
+        index=False,
+        unique=False,
+        nullable=True
+    )
+
     facebook = db.Column(
         db.String(48),
         index=False,

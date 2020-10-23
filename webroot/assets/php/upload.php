@@ -70,6 +70,7 @@
         'github' => $_POST['github'],
         'twitter' => $_POST['twitter'],
         'facebook' => $_POST['facebook'],
+        'linkedin' => $_POST['linkedin'],
         'instagram' => $_POST['instagram']
       );
 

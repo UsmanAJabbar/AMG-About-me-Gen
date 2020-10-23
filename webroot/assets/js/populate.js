@@ -11,8 +11,12 @@ $(document).ready(function() {
     $('#name').text(data.name);
     $('#status').text(data.status);
     $('#description').text(data.bio);
-	const icons = ['phone', 'fb', 'twitter', 'insta', 'email', 'linkedin', 'github', 'medium', 'bechance'];
-
+    const icons = ['phone', 'facebook', 'twitter', 'instagram', 'email', 'linkedin', 'github', 'medium'];
+    $.each(icons, function( index, value ) {
+    if (isNaN(data[value])) { 
+        $('#contact_details').append('<a href=' + data[value] + '><img src=assets/img/icons/' + value + '.png></img></a>');
+      };
+    });
   }).fail( function() {
     $(location).attr('href', 'admin.html');
   });

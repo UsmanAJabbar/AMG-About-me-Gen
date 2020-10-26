@@ -1,47 +1,42 @@
 #!/bin/bash
-
-[ -z "$1" ] && echo 'Usage: '$0' <username>' & exit
-
+# installs the About Me Generator
+#
 # Requires typical webserver installation
 # with php installed and the php-curl module enabled
 # and Python/flask/sqlalchemy/CORS installed for the backend api
 
-#
-# install nginx, php-fpm, php-curl, and start services
+# check for first argument to be used as username
+[ -z "$1" ] && echo 'Usage: '$0' <username>' & exit
 
+# install nginx, php-fpm, php-curl, git, and pip3
 apt install nginx php-fpm php-curl git pip3
 
-#
 # cd to /var/www and git clone the repo
 cd /var/www/
 git clone https://github.com/UsmanGTA/AMG-About-me-Gen.git amg
 
-#
 # Move html to html_dist and link webroot to html
-# chown both folders to nginx user (assuming www-data)
-
 mv html html_dist
 ln -s amg/webroot html
+
+# chown amg folder to nginx user (assuming www-data)
 chown -R www-data amg 
 
-#
 # enable php in sites-available/default
-
 sed -i '/location.*php/s/#location/location/;/location.*php/,/#}/s/\.php/.(php|html)/;/location.*php/,/#}/s/#}/}/' /etc/nginx/sites-available/default
 sed -i '/include.*fastcgi-php/s/#//;/fastcgi_pass.*sock/s/#//' /etc/nginx/sites-available/default
+
+# add basic auth for admin page
 sed -i '/^server/,/^}/s~^}~\n\tlocation /admin.html {\n\tauth_basic "Authorized access only";\n\tauth_basic_user_file /etc/nginx/.htpasswd;\n\t}\n}~' /etc/nginx/sites-available/default
-
-# install python, pip3, sqlalchemy and cors,
-
+# install python, sqlalchemy and cors,
 pip3 install flask
 pip3 install flask_sqlalchemy
 pip3 install flask_cors
 
-#
-#setup authentication
-
+#setup authentication:
 # add user
 echo -n $1':' >> /etc/nginx/.htpasswd
+
 # add password (openssl will prompt twice):
 openssl passwd -apr1 >> /etc/nginx/.htpasswd
 

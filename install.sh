@@ -4,6 +4,8 @@
 # Requires typical webserver installation
 # with php installed and the php-curl module enabled
 # and Python/flask/sqlalchemy/CORS installed for the backend api
+#
+# Usage (as root or sudo): ./install.sh <username>
 
 # check for first argument to be used as username
 [ -z "$1" ] && echo 'Usage: '$0' <username>' & exit

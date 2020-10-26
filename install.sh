@@ -44,7 +44,7 @@ pip3 install flask_cors
 #setup authentication
 
 # add user
-echo -n \'$1:\' >> /etc/nginx/.htpasswd
+echo -n $1':' >> /etc/nginx/.htpasswd
 # add password (openssl will prompt twice):
 openssl passwd -apr1 >> /etc/nginx/.htpasswd
 

@@ -28,6 +28,7 @@ sed -i '/include.*fastcgi-php/s/#//;/fastcgi_pass.*sock/s/#//' /etc/nginx/sites-
 
 # add basic auth for admin page
 sed -i '/^server/,/^}/s~^}~\n\tlocation /admin.html {\n\tauth_basic "Authorized access only";\n\tauth_basic_user_file /etc/nginx/.htpasswd;\n\t}\n}~' /etc/nginx/sites-available/default
+
 # install python, sqlalchemy and cors,
 pip3 install flask
 pip3 install flask_sqlalchemy

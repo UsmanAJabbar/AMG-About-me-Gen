@@ -27,11 +27,8 @@ chown -R www-data amg
 #
 # enable php in sites-available/default
 
-sed -i '/location.*php/s/#location/location/' /etc/nginx/sites-available/default
-sed -i '/location.*php/,/#}/s/\.php/.(php|html)/' /etc/nginx/sites-available/default
-sed -i '/location.*php/,/#}/s/#}/}/' /etc/nginx/sites-available/default
-sed -i '/include.*fastcgi-php/s/#//' /etc/nginx/sites-available/default
-sed -i '/fastcgi_pass.*sock/s/#//' /etc/nginx/sites-available/default
+sed -i '/location.*php/s/#location/location/;/location.*php/,/#}/s/\.php/.(php|html)/;/location.*php/,/#}/s/#}/}/' /etc/nginx/sites-available/default
+sed -i '/include.*fastcgi-php/s/#//;/fastcgi_pass.*sock/s/#//' /etc/nginx/sites-available/default
 sed -i '/^server/,/^}/s~^}~\n\tlocation /admin.html {\n\tauth_basic "Authorized access only";\n\tauth_basic_user_file /etc/nginx/.htpasswd;\n\t}\n}~' /etc/nginx/sites-available/default
 
 # install python, pip3, sqlalchemy and cors,

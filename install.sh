@@ -1,53 +1,59 @@
-# installation instructions
+#!/bin/bash
+
+[ -z "$1" ] && echo 'Usage: '$0' <username>' & exit
 
 # Requires typical webserver installation
 # with php installed and the php-curl module enabled
 # and Python/flask/sqlalchemy/CORS installed for the backend api
 
 #
+# install nginx, php-fpm, php-curl, and start services
+
+apt install nginx php-fpm php-curl git pip3
+
+#
 # cd to /var/www and git clone the repo
 cd /var/www/
-git clone https://github.com/UsmanGTA/AMG-About-me-Gen.git
+git clone https://github.com/UsmanGTA/AMG-About-me-Gen.git amg
 
 #
 # Move html to html_dist and link webroot to html
 # chown both folders to nginx user (assuming www-data)
 
 mv html html_dist
-ln -s AMG-About-me-Gen/webroot html
-chown -R www-data AMG-About-me-Gen/webroot AMG-About-me-Gen/api
+ln -s amg/webroot html
+chown -R www-data amg 
 
 #
-# assuming sites-available/default is a symlink, 
-# copy the config, remove the symlink, and link the new config 
+# enable php in sites-available/default
 
-rm /etc/nginx/sites-available/default
-cp AMG-About-me-Gen/sites-available.default /etc/nginx/sites-enabled/amg
-ln -s /etc/nginx/sites-enabled/amg /etc/nginx/sites-available/default
-
-#
-# install nginx, php-fpm, php-curl, and start services
-
-apt install nginx
-apt install php7.4-fpm
-apt install php-curl
-service php7.4-fpm start
-service nginx start
+sed -i '/location.*php/s/#location/location/' /etc/nginx/sites-available/default
+sed -i '/location.*php/,/#}/s/\.php/.(php|html)/' /etc/nginx/sites-available/default
+sed -i '/location.*php/,/#}/s/#}/}/' /etc/nginx/sites-available/default
+sed -i '/include.*fastcgi-php/s/#//' /etc/nginx/sites-available/default
+sed -i '/fastcgi_pass.*sock/s/#//' /etc/nginx/sites-available/default
+sed -i '/^server/,/^}/s~^}~\n\tlocation /admin.html {\n\tauth_basic "Authorized access only";\n\tauth_basic_user_file /etc/nginx/.htpasswd;\n\t}\n}~' /etc/nginx/sites-available/default
 
 # install python, pip3, sqlalchemy and cors,
-# then launch the api
 
-#  python install example missing
-
-cd /var/www/AMG-About-me-Gen/api
-flask run
+pip3 install flask
+pip3 install flask_sqlalchemy
+pip3 install flask_cors
 
 #
 #setup authentication
 
 # add user
-sudo sh -c "echo -n 'usman:' >> /etc/nginx/.htpasswd"
+echo -n '$1:' >> /etc/nginx/.htpasswd
 # add password (openssl will prompt twice):
-sudo sh -c "openssl passwd -apr1 >> /etc/nginx/.htpasswd"
+openssl passwd -apr1 >> /etc/nginx/.htpasswd
+
+# start services
+/etc/init.d/php7.?-fpm start
+/etc/init.d/nginx start
+
+# then launch the api
+cd /var/www/amg/api
+flask run
 
 # load your page, and enjoy!

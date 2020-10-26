@@ -45,6 +45,10 @@ openssl passwd -apr1 >> /etc/nginx/.htpasswd
 /etc/init.d/php7.?-fpm start
 /etc/init.d/nginx start
 
+# -rather than running directly below,
+# -api needs to instead use gunicorn,
+# -started with other services above
+
 # then launch the api
 cd /var/www/amg/api
 flask run

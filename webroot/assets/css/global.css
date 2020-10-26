@@ -6,12 +6,11 @@ body {
   height: 100%;
 }
 
-.light {
+.dark {
   background: black;
   color: white;
 }
-
-.dark {
+.light {
   color: black;
   background: white;
 }

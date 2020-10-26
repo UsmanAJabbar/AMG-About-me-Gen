@@ -9,6 +9,8 @@ $(document).ready(() => {
   $('#light_dark_toggle').click(() => {
     // Switch between preset light/dark CSS
     $('body').toggleClass('light dark');
+	// Update shadow/borders with class toggles
+	$('.container').toggleClass('dark_mode_shadow light_mode_shadow');
     // Update the light/dark button clipart
     $('#light_dark_toggle').toggleClass('sun moon');
   });

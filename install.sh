@@ -9,7 +9,7 @@
 [ -z "$1" ] && echo 'Usage: '$0' <username>' & exit
 
 # install nginx, php-fpm, php-curl, git, and pip3
-apt install nginx php-fpm php-curl git python3-pip
+apt-get -y install nginx php-fpm php-curl git python3-pip
 
 # cd to /var/www and git clone the repo
 cd /var/www/

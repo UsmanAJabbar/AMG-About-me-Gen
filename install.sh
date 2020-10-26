@@ -9,7 +9,7 @@
 [ -z "$1" ] && echo 'Usage: '$0' <username>' & exit
 
 # install nginx, php-fpm, php-curl, git, and pip3
-apt install nginx php-fpm php-curl git pip3
+apt install nginx php-fpm php-curl git python3-pip
 
 # cd to /var/www and git clone the repo
 cd /var/www/
@@ -30,9 +30,7 @@ sed -i '/include.*fastcgi-php/s/#//;/fastcgi_pass.*sock/s/#//' /etc/nginx/sites-
 sed -i '/^server/,/^}/s~^}~\n\tlocation /admin.html {\n\tauth_basic "Authorized access only";\n\tauth_basic_user_file /etc/nginx/.htpasswd;\n\t}\n}~' /etc/nginx/sites-available/default
 
 # install python, sqlalchemy and cors,
-pip3 install flask
-pip3 install flask_sqlalchemy
-pip3 install flask_cors
+pip3 install flask flask_sqlalchemy flask_cors
 
 #setup authentication:
 # add user

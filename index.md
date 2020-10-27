@@ -1,37 +1,30 @@
-## Welcome to GitHub Pages
+# AMG - The About Me Generator
+![header](https://raw.githubusercontent.com/UsmanGTA/AMG-About-me-Gen/master/doc_assets/header.jpg)
+## Overview
+The About Me Generator is a website generator that allows entreprenuers, students, and individuals to create a simply anonymous website that requires simple details without the overwhelming options and services that you may need to log into.
 
-You can use the [editor on GitHub](https://github.com/UsmanGTA/AMG-About-me-Gen/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+We understood that a lot of users may find using Wix and Wordpress overwhelming with all the unneeded additions. We decided to solve that, keeping everything simple and tidy to ensure you have a personal site for yourself.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Features
+- Simple minimalist design
+- Light/Dark modes
+- API stream for future expansions...
+- Vcard exports
 
-### Markdown
+### Pre-requisites
+- A fresh virtual/dedicated server (recommended)
+- Ubuntu 16.0 LTS+
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Technologies involved...
+This project serves as the last project in the Holberton School Foundations curriculum, hence, we were supposed to use a lot of technologies we had used in the past along with a couple of extra technologies from past experiences.
+The technologies used to build this project include:
+- Python (Flask) to setup the databases and generate/stream JSON backend.
+- SQLite as a simple database to pull and push data to due to its lightweight resource usage.
+- PHP to process inputs/modifications suggested by the admin page.
+- Bootstrap/HTML/CSS/JS to generate the overall final page as well as add extra functionality.
 
-```markdown
-Syntax highlighted code block
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/UsmanGTA/AMG-About-me-Gen/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+- For installation instructions, see install.txt
+# Authors
+- Usman Abdul Jabbar Shaikh - (usmangta[at]gmail.com / UsmanJabbar.com)
+- Anthony Sims - (zocle[at]zocle.net)

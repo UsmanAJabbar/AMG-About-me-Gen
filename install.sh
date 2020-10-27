@@ -35,6 +35,7 @@ chown -R www-data amg
 
 # insert provided hostname for api endpoint
 sed -i 's/HOSTNAME/$2/' /var/www/amg/webroot/assets/populate.js
+
 # enable php in sites-available/default
 sed -i '/location.*php/s/#location/location/;/location.*php/,/#}/s/#}/}/;/include.*fastcgi-php/s/#//;/fastcgi_pass.*sock/s/#//' /etc/nginx/sites-available/default
 
@@ -72,8 +73,8 @@ echo -n $1':' >> /etc/nginx/.htpasswd
 openssl passwd -apr1 >> /etc/nginx/.htpasswd
 
 # start services
-/etc/init.d/php7.?-fpm start
-/etc/init.d/nginx start
+systemctl start php7.?-fpm
+systemctl start nginx 
 systemctl enable gunicorn
 systemctl start gunicorn
 

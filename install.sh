@@ -34,7 +34,7 @@ ln -s amg/webroot html
 chown -R www-data amg 
 
 # insert provided hostname for api endpoint
-sed -i 's/HOSTNAME/$2/' /var/www/amg/webroot/assets/populate.js
+sed -i 's/HTTPHOST/$2/' /var/www/amg/webroot/assets/populate.js
 
 # enable php in sites-available/default
 sed -i '/location.*php/s/#location/location/;/location.*php/,/#}/s/#}/}/;/include.*fastcgi-php/s/#//;/fastcgi_pass.*sock/s/#//' /etc/nginx/sites-available/default
@@ -55,8 +55,8 @@ After = network.target
 
 [Service]
 WorkingDirectory=/var/www/amg/api
-User=www-data
-Group=www-data
+User=nobody
+Group=nogroup
 ExecStart=/usr/local/bin/gunicorn --bind 0.0.0.0:5000 amg:app -w 3 --access-logfile /tmp/amgapi-access.log --error-logfile /tmp/amgapi-error.log
 ExecReload=/bin/kill -1 $MAINPID
 ExecStop=/bin/kill -15 $MAINPID

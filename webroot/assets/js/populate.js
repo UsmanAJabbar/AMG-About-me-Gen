@@ -4,7 +4,7 @@
 $(document).ready(function() {
 
   // Adds the specific data to their respective sections
-  $.getJSON('http://HOSTNAME:5000/', function( data ) {
+  $.getJSON('http://HTTPHOST:5000/', function( data ) {
     $('title').text(data.name);
     $('#cover_image').css('background', 'url(' + data.cvrimg + ') center / cover no-repeat');
     $('#profile_picture').css('background', 'url(' + data.propic + ') center / cover no-repeat');

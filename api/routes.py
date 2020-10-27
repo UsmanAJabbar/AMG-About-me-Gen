@@ -1,6 +1,6 @@
 from flask import request, make_response, jsonify
 from flask import current_app as app
-from .models import db, Profile
+from models import db, Profile
 
 
 @app.route('/', methods=['GET'])
@@ -26,13 +26,12 @@ def add_profile():
     github = jreq['github']
     twitter = jreq['twitter']
     facebook = jreq['facebook']
-    linkedin = jreq['linkedin']
     instagram = jreq['instagram']
     medium = jreq['medium']
     response = None
 
     if name and status and bio and cvrimg and propic:
-        newprofile = Profile(name=name, status=status, bio=bio, cvrimg=cvrimg, propic=propic, email=email, phone=phone, github=github, twitter=twitter, facebook=facebook, instagram=instagram, medium=medium, linkedin=linkedin)
+        newprofile = Profile(name=name, status=status, bio=bio, cvrimg=cvrimg, propic=propic, email=email, phone=phone, github=github, twitter=twitter, facebook=facebook, instagram=instagram, medium=medium)
         db.session.add(newprofile)
         db.session.commit()
         response = make_response(f"{newprofile} successfully created!")

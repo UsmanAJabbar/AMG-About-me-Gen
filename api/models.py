@@ -1,7 +1,7 @@
 """ data models """
 from sqlalchemy import ForeignKey, Column, Integer, String
 from sqlalchemy.orm import relationship
-from . import db
+from amg import db
 
 class Profile(db.Model):
     """ User Data model """

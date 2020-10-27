@@ -8,7 +8,15 @@
 # Usage (as root or sudo): ./install.sh <username>
 
 # check for first argument to be used as username
-[ -z "$1" ] && echo 'Usage: '$0' <username>' & exit
+if [ -z "$1" ]
+  then
+    echo 'Usage: '$0' <username>'
+    exit
+fi
+
+# export for flask (may not be needed for gunicorn)
+export LC_ALL=C.UTF-8
+export LANG=C.UTF-8
 
 # install nginx, php-fpm, php-curl, git, and pip3
 apt-get -y install nginx php-fpm php-curl git python3-pip
@@ -25,8 +33,7 @@ ln -s amg/webroot html
 chown -R www-data amg 
 
 # enable php in sites-available/default
-sed -i '/location.*php/s/#location/location/;/location.*php/,/#}/s/\.php/.(php|html)/;/location.*php/,/#}/s/#}/}/' /etc/nginx/sites-available/default
-sed -i '/include.*fastcgi-php/s/#//;/fastcgi_pass.*sock/s/#//' /etc/nginx/sites-available/default
+sed -i '/location.*php/s/#location/location/;/location.*php/,/#}/s/#}/}/;/include.*fastcgi-php/s/#//;/fastcgi_pass.*sock/s/#//' /etc/nginx/sites-available/default
 
 # add basic auth for admin page
 sed -i '/^server/,/^}/s~^}~\n\tlocation /admin.html {\n\tauth_basic "Authorized access only";\n\tauth_basic_user_file /etc/nginx/.htpasswd;\n\t}\n}~' /etc/nginx/sites-available/default

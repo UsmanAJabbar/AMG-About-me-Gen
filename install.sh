@@ -8,9 +8,10 @@
 # Usage (as root or sudo): ./install.sh <username>
 
 # check for first argument to be used as username
-if [ -z "$1" ]
+if [ -z "$2" ]
   then
-    echo 'Usage: '$0' <username>'
+    echo 'Usage: '$0' <username> <public facing hostname>'
+    echo '  where public facing hostname is the dns name you'll use to access the page.'
     exit
 fi
 
@@ -32,6 +33,8 @@ ln -s amg/webroot html
 # chown amg folder to nginx user (assuming www-data)
 chown -R www-data amg 
 
+# insert provided hostname for api endpoint
+sed -i 's/HOSTNAME/$2/' /var/www/amg/webroot/assets/populate.js
 # enable php in sites-available/default
 sed -i '/location.*php/s/#location/location/;/location.*php/,/#}/s/#}/}/;/include.*fastcgi-php/s/#//;/fastcgi_pass.*sock/s/#//' /etc/nginx/sites-available/default
 
@@ -39,7 +42,27 @@ sed -i '/location.*php/s/#location/location/;/location.*php/,/#}/s/#}/}/;/includ
 sed -i '/^server/,/^}/s~^}~\n\tlocation /admin.html {\n\tauth_basic "Authorized access only";\n\tauth_basic_user_file /etc/nginx/.htpasswd;\n\t}\n}~' /etc/nginx/sites-available/default
 
 # install python, sqlalchemy and cors,
-pip3 install flask flask_sqlalchemy flask_cors
+pip3 install flask flask_sqlalchemy flask_cors gunicorn
+
+cat >> /lib/systemd/system/gunicorn.service << EOF
+# gunicorn startup dance
+# =======================
+#
+[Unit]
+Description=A Python WSGI HTTP server
+After = network.target
+
+[Service]
+WorkingDirectory=/var/www/amg/api
+User=www-data
+Group=www-data
+ExecStart=/usr/local/bin/gunicorn --bind 0.0.0.0:5000 amg:app -w 3 --access-logfile /tmp/amgapi-access.log --error-logfile /tmp/amgapi-error.log
+ExecReload=/bin/kill -1 $MAINPID
+ExecStop=/bin/kill -15 $MAINPID
+
+[Install]
+WantedBy=multi-user.target
+EOF
 
 #setup authentication:
 # add user
@@ -51,13 +74,9 @@ openssl passwd -apr1 >> /etc/nginx/.htpasswd
 # start services
 /etc/init.d/php7.?-fpm start
 /etc/init.d/nginx start
+systemctl enable gunicorn
+systemctl start gunicorn
 
-# -rather than running directly below,
-# -api needs to instead use gunicorn,
-# -started with other services above
-
-# then launch the api
-cd /var/www/amg/api
-flask run
-
-# load your page, and enjoy!
+# Success!
+echo "Congratulations! The amg profile generator has been installed."
+echo "Please visit http://"$2"/admin.html to set up your new webpage."

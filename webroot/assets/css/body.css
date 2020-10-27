@@ -3,12 +3,12 @@
 }
 .dark_mode_shadow {
   border-radius: 20px;
-  box-shadow: 0px 0px 20px 5px white;
+  box-shadow: 0px 0px 30px 5px white;
   padding: 15px;
 }
 .light_mode_shadow {
   border-radius: 20px;
-  box-shadow: 0px 0px 20px 5px black;
+  box-shadow: 0px 0px 30px 5px black;
   padding: 15px;
 }
 #cover_image {
@@ -43,4 +43,7 @@
   align-items: center;
   width: 100%;
   max-height: 40px;
+}
+#icons {
+	margin: 5px;
 }

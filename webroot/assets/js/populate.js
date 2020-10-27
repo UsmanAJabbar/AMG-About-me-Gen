@@ -14,7 +14,7 @@ $(document).ready(function() {
     const icons = ['phone', 'facebook', 'twitter', 'instagram', 'email', 'github', 'medium'];
     $.each(icons, function( index, value ) {
     if (isNaN(data[value])) { 
-        $('#contact_details').append('<a href=' + data[value] + '><img src=assets/img/icons/' + value + '.png height=32px></img></a>');
+        $('#contact_details').append('<a href=' + data[value] + '><img id="icons" src=assets/img/icons/' + value + '.png height=32px></img></a>');
       };
     });
   });

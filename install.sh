@@ -10,7 +10,7 @@
 # check for first argument to be used as username
 if [ -z "$2" ]
   then
-    echo 'Usage: '$0' <username> <public facing hostname>'
+    echo 'Usage: '"$0"' <username> <public facing hostname>'
     echo "where public facing hostname is the dns name you'll use to access the page."
     exit
 
@@ -24,7 +24,7 @@ export LANG=C.UTF-8
 apt-get -y install nginx php-fpm php-curl git python3-pip
 
 # cd to /var/www and git clone the repo
-cd /var/www/
+cd /var/www/ || exit
 git clone https://github.com/UsmanGTA/AMG-About-me-Gen.git amg
 
 # Move html to html_dist and link webroot to html
@@ -35,7 +35,7 @@ ln -s amg/webroot html
 chown -R www-data amg 
 
 # insert provided hostname for api endpoint
-sed -i 's/HTTPHOST/$2/' /var/www/amg/webroot/assets/js/populate.js
+sed -i "s/HTTPHOST/$2/" /var/www/amg/webroot/assets/js/populate.js
 
 # enable php in sites-available/default
 sed -i '/location.*php/s/#location/location/;/location.*php/,/#}/s/#}/}/;/include.*fastcgi-php/s/#//;/fastcgi_pass.*sock/s/#//;/fastcgi_pass.*sock/s/7.0/7.2/' /etc/nginx/sites-available/default
@@ -68,7 +68,7 @@ EOF
 
 #setup authentication:
 # add user
-echo -n $1: >> /etc/nginx/.htpasswd
+echo -n "$1": >> /etc/nginx/.htpasswd
 
 # add password (openssl will prompt twice):
 openssl passwd -apr1 >> /etc/nginx/.htpasswd
@@ -82,4 +82,4 @@ systemctl start gunicorn
 # Success!
 echo
 echo "Congratulations! The amg profile generator has been installed."
-echo "Please visit http://"$2"/admin.html to set up your new webpage."
+echo "Please visit http://""$2""/admin.html to set up your new webpage."

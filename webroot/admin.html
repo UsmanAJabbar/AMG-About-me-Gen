@@ -8,39 +8,58 @@
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800,900">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/admin.css">
 </head>
 
-<body class="d-flex d-xl-flex justify-content-center align-items-center justify-content-xl-center align-items-xl-center" style="height: 100%;background: rgb(0,0,0);color: rgb(255,255,255);font-family: Poppins;letter-spacing: -1.5px;">
-    <div class="container" style="padding: 0;margin: 0;">
+<body class="d-flex d-xl-flex justify-content-center align-items-center justify-content-xl-center align-items-xl-center">
+    <div class="container">
         <form action="assets/php/upload.php" method="post" enctype="multipart/form-data">
-            <div id="form_sections" style="display: flex;">
-                <div id="lefthalf" style="width: 100%;margin: 10px;"><label class="text-uppercase" for="name" style="font-family: Poppins;font-weight: 600;font-size: 1.5em;margin: 0;">Name</label><input class="form-control" type="text" id="name-1" name="name-1" placeholder="Your full name" style="border-radius: 20px;text-align: center;letter-spacing: -1px;background: rgb(0,0,0);border-width: 2px;border-color: rgb(255,255,255);color: rgb(255,255,255);">
-                    <label
-                        class="text-uppercase" for="status" style="font-family: Poppins;font-weight: 600;font-size: 1.5em;margin: 0;">STATUS</label><input class="form-control" type="text" id="status" name="status" placeholder="Your full name" style="border-radius: 20px;text-align: center;letter-spacing: -1px;background: rgb(0,0,0);border-width: 2px;border-color: rgb(255,255,255);color: rgb(255,255,255);">
-                        <label
-                            class="text-uppercase" for="description" style="font-family: Poppins;font-weight: 600;font-size: 1.5em;margin: 0;">DESCRIPTION</label><textarea class="form-control" id="description" name="description" placeholder="Write something special about yourself..." style="border-radius: 20px;text-align: left;letter-spacing: -1px;background: rgb(0,0,0);border-width: 2px;border-color: rgb(255,255,255);color: rgb(255,255,255);"></textarea>
-                            <label
-                                class="text-uppercase" for="name" style="font-family: Poppins;font-weight: 600;font-size: 1.5em;margin: 0;">PROFILE PICTURE</label>
-                                <div class="custom-file"><input type="file" class="custom-file-input" name="profilepic" required="" accept="image/*"><label class="custom-file-label" style="background: rgb(0,0,0);color: rgb(255,255,255);border-radius: 20px;">Upload a profile picture...</label></div>
-                                <label
-                                    class="text-uppercase" for="name" style="font-family: Poppins;font-weight: 600;font-size: 1.5em;margin: 0;">COVER IMAGE</label>
-                                    <div class="custom-file"><input type="file" class="custom-file-input" name="coverimg" required="" accept="image/*"><label class="custom-file-label" style="background: rgb(0,0,0);color: rgb(255,255,255);border-radius: 20px;" placeholder="Upload a cover image...">Upload a cover image...</label></div>
-                                    <label
-                                        class="text-uppercase" for="name" style="font-family: Poppins;font-weight: 600;font-size: 1.5em;margin: 0;">MEDIUM</label><input class="form-control" type="text" id="name-2" name="medium" placeholder="Enter the full URL" style="border-radius: 20px;text-align: center;letter-spacing: -1px;background: rgb(0,0,0);border-width: 2px;border-color: rgb(255,255,255);color: rgb(255,255,255);"></div>
-                <div
-                    id="righthalf" style="width: 100%;margin: 10px;"><label class="text-uppercase" for="facebook" style="font-family: Poppins;font-weight: 600;font-size: 1.5em;margin: 0;">GITHUB</label><input class="form-control" type="text" id="facebook" name="github" placeholder="Enter the full URL" style="border-radius: 20px;text-align: center;letter-spacing: -1px;background: rgb(0,0,0);border-width: 2px;border-color: rgb(255,255,255);color: rgb(255,255,255);">
-                    <label
-                        class="text-uppercase" for="facebook" style="font-family: Poppins;font-weight: 600;font-size: 1.5em;margin: 0;">FACEBOOK</label><input class="form-control" type="text" id="facebook-5" name="facebook" placeholder="Enter the full URL" style="border-radius: 20px;text-align: center;letter-spacing: -1px;background: rgb(0,0,0);border-width: 2px;border-color: rgb(255,255,255);color: rgb(255,255,255);">
-                        <label
-                            class="text-uppercase" for="facebook" style="font-family: Poppins;font-weight: 600;font-size: 1.5em;margin: 0;">TWITTER</label><input class="form-control" type="text" id="facebook-4" name="twitter" placeholder="Enter the full URL" style="border-radius: 20px;text-align: center;letter-spacing: -1px;background: rgb(0,0,0);border-width: 2px;border-color: rgb(255,255,255);color: rgb(255,255,255);">
-                            <label
-                                class="text-uppercase" for="facebook" style="font-family: Poppins;font-weight: 600;font-size: 1.5em;margin: 0;">INSTAGRAM</label><input class="form-control" type="text" id="facebook-3" name="instagram" placeholder="Enter the full URL" style="border-radius: 20px;text-align: center;letter-spacing: -1px;background: rgb(0,0,0);border-width: 2px;border-color: rgb(255,255,255);color: rgb(255,255,255);">
-                                <label
-                                    class="text-uppercase" for="facebook" style="font-family: Poppins;font-weight: 600;font-size: 1.5em;margin: 0;">PHONE NUMBER</label><input class="form-control" type="text" id="facebook-2" name="phone" placeholder="Enter your full phone number" style="border-radius: 20px;text-align: center;letter-spacing: -1px;background: rgb(0,0,0);border-width: 2px;border-color: rgb(255,255,255);color: rgb(255,255,255);">
-                                    <label
-                                        class="text-uppercase" for="facebook" style="font-family: Poppins;font-weight: 600;font-size: 1.5em;margin: 0;">EMAIL ADDRESS</label><input class="form-control" type="text" id="facebook-1" name="email" placeholder="Enter the full URL" style="border-radius: 20px;text-align: center;letter-spacing: -1px;background: rgb(0,0,0);border-width: 2px;border-color: rgb(255,255,255);color: rgb(255,255,255);"></div>
-    </div><button class="btn btn-primary" type="submit" style="border-radius: 20px;width: 100%;border-width: 2px;background: rgb(0,0,0);letter-spacing: -1px;font-weight: 600;margin-top: 10px;">SUBMIT</button></form>
+            <div id="form_sections">
+                <div id="lefthalf">
+                	<label class="text-uppercase" for="name">Name</label>
+                	<input class="form-control input_fields" type="text" id="name" name="name" placeholder="Your full name">
+
+                    <label class="text-uppercase" for="status">Status</label>
+                    <input class="form-control input_fields" type="text" id="status" name="status" placeholder="Enter a status (e.g Manager @ Company XYZ)">
+
+                    <label class="text-uppercase" for="description">Description</label>
+                    <textarea class="form-control input_fields" id="description" name="description" placeholder="Write something special about yourself..."></textarea>
+
+                    <label class="text-uppercase" for="profile">Profile Picture</label>
+                    <div class="custom-file"><input type="file" class="custom-file-input" name="profile" required="" accept="image/*">
+                    	<label class="custom-file-label uploads">Upload a profile picture...</label>
+                    </div>
+
+                    <label class="text-uppercase" for="cover">Cover Image</label>
+                    <div class="custom-file"><input type="file" class="custom-file-input" name="cover" required="" accept="image/*">
+                    	<label class="custom-file-label uploads">Upload a cover image...</label>
+                    </div>
+
+                    <label class="text-uppercase" for="medium">Medium</label>
+                    <input class="form-control input_fields" type="text" id="medium" name="medium" placeholder="Enter the full URL">
+                </div>
+
+                <div id="righthalf">
+                	<label class="text-uppercase" for="github">Github</label>
+                	<input class="form-control input_fields" type="text" id="github" name="github" placeholder="Enter the full URL">
+
+                    <label class="text-uppercase" for="facebook">Facebook</label>
+                    <input class="form-control input_fields" type="text" id="facebook" name="facebook" placeholder="Enter the full URL">
+
+                    <label class="text-uppercase" for="twitter">Twitter</label>
+                    <input class="form-control input_fields" type="text" id="twitter" name="twitter" placeholder="Enter the full URL">
+
+                    <label class="text-uppercase" for="instagram">Instagram</label>
+                    <input class="form-control input_fields" type="text" id="instagram" name="instagram" placeholder="Enter the full URL">
+
+                    <label class="text-uppercase" for="phone">Phone Number</label>
+                    <input class="form-control input_fields" type="text" id="phone" name="phone" placeholder="Enter your full phone number">
+
+                    <label class="text-uppercase" for="facebook">Email Address</label>
+                    <input class="form-control input_fields" type="text" id="email" name="email" placeholder="Enter your email address">
+                </div>
+			</div>
+			<button class="btn btn-primary button_styling" type="submit">Submit</button></form>
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>

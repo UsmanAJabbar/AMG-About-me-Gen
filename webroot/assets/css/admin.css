@@ -1,0 +1,64 @@
+html {
+	height: 100%;
+}
+body {
+	text-transform: uppercase;
+	height: 100%;
+	background: rgb(0,0,0);
+	color: rgb(255,255,255);
+	font-family: Poppins;
+	letter-spacing: -1.5px;
+}
+.container {
+	padding: 0;
+	margin: 0;
+}
+#form_sections {
+	display: flex;
+}
+#left_half {
+	width: 100%;
+	margin: 10px;
+}
+label {
+	font-family: Poppins;
+	font-weight: 600;
+	font-size: 1.5em;
+	margin: 0;
+}
+text_area {
+	border-radius: 20px;
+	text-align: left;
+	letter-spacing: -1px;
+	background: rgb(0,0,0);
+	border-width: 2px;
+	border-color: rgb(255,255,255);
+	color: rgb(255,255,255);
+}
+.uploads {
+	background: rgb(0,0,0);
+	color: rgb(255,255,255);
+	border-radius: 20px;
+}
+.input_fields {
+	border-radius: 20px;
+	text-align: center;
+	letter-spacing: -1px;
+	background: rgb(0,0,0);
+	border-width: 2px;
+	border-color: rgb(255,255,255);
+	color: rgb(255,255,255);
+}
+.righthalf {
+	width: 100%;
+	margin: 10px;
+}
+.button_styling {
+	border-radius: 20px;
+	width: 100%;
+	border-width: 2px;
+	background: rgb(0,0,0);
+	letter-spacing: -1px;
+	font-weight: 600;
+	margin-top: 10px;
+}

@@ -3,8 +3,8 @@
   $target_dir = 'assets/img/';
   $webroot = $_SERVER['DOCUMENT_ROOT'];
 
-  $coverimg = $target_dir . basename($_FILES["cover"]["name"]);
-  $profilepic = $target_dir . basename($_FILES["profile"]["name"]);
+  $coverimg = $target_dir . basename($_FILES["coverimg"]["name"]);
+  $profilepic = $target_dir . basename($_FILES["profilepic"]["name"]);
 
   $imageFileType1 = strtolower(pathinfo($coverimg,PATHINFO_EXTENSION));
   $imageFileType2 = strtolower(pathinfo($profilepic,PATHINFO_EXTENSION));
@@ -13,8 +13,8 @@
 
   // getimagesize will confirm the file is an actual image
   if(isset($_POST["submit"])) {
-    $check1 = getimagesize($_FILES["cover"]["tmp_name"]);
-    $check2 = getimagesize($_FILES["profile"]["tmp_name"]);
+    $check1 = getimagesize($_FILES["coverimg"]["tmp_name"]);
+    $check2 = getimagesize($_FILES["profilepic"]["tmp_name"]);
     if($check1 !== false && $check2 !== false) {
       $uploadOk = 1;
     } else {
@@ -24,7 +24,7 @@
   }
 
   // Check file size
-  if ($_FILES["cover"]["size"] > 500000 || $_FILES["profile"]["size"] > 500000) {
+  if ($_FILES["coverimg"]["size"] > 500000 || $_FILES["profilepic"]["size"] > 500000) {
     echo "Sorry, your file is too large.";
     $uploadOk = 0;
   }
@@ -39,7 +39,7 @@
   if ($uploadOk == 1) {
 
     // set path to file
-    if (move_uploaded_file($_FILES["cover"]["tmp_name"], $webroot . "/" . $cover) && move_uploaded_file($_FILES["profile"]["tmp_name"], $webroot . "/" . $profile)) {
+    if (move_uploaded_file($_FILES["coverimg"]["tmp_name"], $webroot . "/" . $coverimg) && move_uploaded_file($_FILES["profilepic"]["tmp_name"], $webroot . "/" . $profilepic)) {
 
       // remove submit from json and add image paths
       // no longer needed
@@ -59,7 +59,7 @@
       $ch = curl_init($url);
 
       $data = array(
-        'name' => $_POST['name'],
+        'name' => $_POST['name-1'],
         'status' => $_POST['status'],
         'description' => $_POST['description'],
         'phone' => $_POST['phone'],

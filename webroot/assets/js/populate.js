@@ -11,7 +11,7 @@ $(document).ready(function() {
     $('#name').text(data.name);
     $('#status').text(data.status);
     $('#description').text(data.bio);
-    const icons = ['phone', 'facebook', 'twitter', 'instagram', 'email', 'github', 'medium'];
+    const icons = ['phone', 'facebook', 'twitter', 'instagram', 'email', 'github', 'linkedin', 'medium'];
     $.each(icons, function( index, value ) {
     if (isNaN(data[value])) { 
 	if (data[value] === 'email') {

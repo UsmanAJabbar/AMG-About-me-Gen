@@ -67,6 +67,7 @@
         'cvrimg' => $coverimg,
         'propic' => $profilepic,
         'medium' => $_POST['medium'],
+        'linkedin' => $_POST['linkedin'],
         'github' => $_POST['github'],
         'twitter' => $_POST['twitter'],
         'facebook' => $_POST['facebook'],

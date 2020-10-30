@@ -18,7 +18,7 @@ echo
 echo -n "$uservar": > htpasswd
 echo Please enter a password for "$uservar"
 # add password (openssl will prompt twice):
-openssl passwd -apr1 >> /etc/nginx/.htpasswd
+openssl passwd -apr1 >> htpasswd
 
 echo
 read -p 'Please enter the http host you'll use for your site: ' httphost
@@ -32,6 +32,8 @@ export LANG=C.UTF-8
 
 # install nginx, php-fpm, php-curl, git, and pip3
 apt-get -y install nginx php-fpm php-curl git python3-pip
+
+mv htpasswd /etc/nginx/.htpasswd
 
 # cd to /var/www and git clone the repo
 cd /var/www/ || exit

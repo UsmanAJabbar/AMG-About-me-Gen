@@ -7,14 +7,24 @@
 #
 # Usage (as root or sudo): ./install.sh <username>
 
-# check for first argument to be used as username
-if [ -z "$2" ]
-  then
-    echo 'Usage: '"$0"' <username> <public facing hostname>'
-    echo "where public facing hostname is the dns name you'll use to access the page."
-    exit
+echo
+echo "Welcome to the AMG installer!
+echo
+read -p 'Please enter a username: ' uservar
+echo
 
-fi
+#setup authentication:
+# add user
+echo -n "$uservar": > htpasswd
+echo Please enter a password for "$uservar"
+# add password (openssl will prompt twice):
+openssl passwd -apr1 >> /etc/nginx/.htpasswd
+
+echo
+read -p 'Please enter the http host you'll use for your site: ' httphost
+echo
+echo 'Installing system... '
+echo
 
 # export for flask (may not be needed for gunicorn)
 export LC_ALL=C.UTF-8
@@ -35,7 +45,7 @@ ln -s amg/webroot html
 chown -R www-data amg 
 
 # insert provided hostname for api endpoint
-sed -i "s/HTTPHOST/$2/" /var/www/amg/webroot/assets/js/populate.js
+sed -i "s/HTTPHOST/$httphost/" /var/www/amg/webroot/assets/js/populate.js
 
 # enable php in sites-available/default
 sed -i '/location.*php/s/#location/location/;/location.*php/,/#}/s/#}/}/;/include.*fastcgi-php/s/#//;/fastcgi_pass.*sock/s/#//;/fastcgi_pass.*sock/s/7.0/7.2/' /etc/nginx/sites-available/default
@@ -66,20 +76,15 @@ ExecStop=/bin/kill -15 $MAINPID
 WantedBy=multi-user.target
 EOF
 
-#setup authentication:
-# add user
-echo -n "$1": >> /etc/nginx/.htpasswd
-
-# add password (openssl will prompt twice):
-openssl passwd -apr1 >> /etc/nginx/.htpasswd
-
 # start services
-systemctl start php7.?-fpm
-systemctl start nginx 
 systemctl enable gunicorn
 systemctl start gunicorn
+systemctl restart php7.?-fpm
+systemctl restart nginx 
 
 # Success!
 echo
 echo "Congratulations! The amg profile generator has been installed."
-echo "Please visit http://""$2""/admin.html to set up your new webpage."
+echo
+echo "Please visit http://""$httphost""/admin.html to set up your new webpage."
+echo

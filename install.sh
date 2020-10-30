@@ -4,26 +4,21 @@
 # Requires typical webserver installation
 # with php installed and the php-curl module enabled
 # and Python/flask/sqlalchemy/CORS installed for the backend api
-#
-# Usage (as root or sudo): ./install.sh <username>
 
-echo
 echo 'Welcome to the AMG installer!'
-echo
+
 read -p 'Please enter a username: ' uservar
-echo
 
 #setup authentication:
 # add user
 echo -n "$uservar": > htpasswd
-echo Please enter a password for "$uservar"
 # add password (openssl will prompt twice):
 openssl passwd -apr1 >> htpasswd
 
 echo
-read -p 'Please enter the http host you'll use for your site: ' httphost
+read -p "Please enter the http host you'll use for your site: " httphost
 echo
-echo 'Installing system... '
+echo Installing system...
 echo
 
 # export for flask (may not be needed for gunicorn)

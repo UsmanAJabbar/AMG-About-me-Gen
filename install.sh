@@ -8,7 +8,7 @@
 # Usage (as root or sudo): ./install.sh <username>
 
 echo
-echo "Welcome to the AMG installer!
+echo 'Welcome to the AMG installer!'
 echo
 read -p 'Please enter a username: ' uservar
 echo
